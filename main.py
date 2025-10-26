@@ -76,6 +76,10 @@ class QueryDocumentRequest(BaseModel):
 class GetAgentInfoRequest(BaseModel):
     agent_id: str
 
+class IndexDocumentRequest(BaseModel):
+    input_path: str
+    index_name: str
+
 ### Endpoints
 
 @app.post("/create_agent")
@@ -89,7 +93,7 @@ async def create_agent(req: CreateAgentRequest):
         "name": f"Agent for {req.company_name}",
         "conversation_config": {
             "agent": {
-                "first_message": f"Hello, I'm Maya from {req.company_name}. How can I help you today?",
+                "first_message": f"Hello, I'm Phillip from {req.company_name}. How can I help you today?",
                 "prompt": {
                     "prompt": (
                         f"You are a helpful customer-service assistant for {req.company_name}. "
@@ -166,9 +170,9 @@ async def update_agent_vars(req: UpdateAgentVarsRequest):
     update_body = {
         "conversation_config": {
             "agent": {
-                "first_message": f"Hello! I'm Maya from {req.company_name}. I'm here to help answer your questions and provide information. How can I assist you today?",
+                "first_message": f"Hello! I'm Phillip from {req.company_name}. I'm here to help answer your questions and provide information. How can I assist you today?",
                 "prompt": {
-                    "prompt": f"""You are Maya, a professional and knowledgeable customer service assistant representing {req.company_name}. The website is {req.company_url}. Your role is to provide excellent customer support by being helpful, accurate, and empathetic.
+                    "prompt": f"""You are Phillip, a professional and knowledgeable customer service assistant representing {req.company_name}. The website is {req.company_url}. Your role is to provide excellent customer support by being helpful, accurate, and empathetic.
 
 CORE IDENTITY & PERSONALITY:
 - You are warm, friendly, and professional in all interactions
